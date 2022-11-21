@@ -27,6 +27,7 @@ export default class AgendaScreen extends Component<State> {
         renderEmptyDate={this.renderEmptyDate}
         rowHasChanged={this.rowHasChanged}
         showClosingKnob={true}
+        horizontalList={true}
         // markingType={'period'}
         // markedDates={{
         //    '2017-05-08': {textColor: '#43515c'},
@@ -57,7 +58,7 @@ export default class AgendaScreen extends Component<State> {
 
         if (!items[strTime]) {
           items[strTime] = [];
-          
+
           const numItems = Math.floor(Math.random() * 3 + 1);
           for (let j = 0; j < numItems; j++) {
             items[strTime].push({
@@ -68,7 +69,7 @@ export default class AgendaScreen extends Component<State> {
           }
         }
       }
-      
+
       const newItems: AgendaSchedule = {};
       Object.keys(items).forEach(key => {
         newItems[key] = items[key];
@@ -77,7 +78,7 @@ export default class AgendaScreen extends Component<State> {
         items: newItems
       });
     }, 1000);
-  }
+  };
 
   renderItem = (reservation: AgendaEntry, isFirst: boolean) => {
     const fontSize = isFirst ? 16 : 14;
@@ -92,7 +93,7 @@ export default class AgendaScreen extends Component<State> {
         <Text style={{fontSize, color}}>{reservation.name}</Text>
       </TouchableOpacity>
     );
-  }
+  };
 
   renderEmptyDate = () => {
     return (
@@ -100,11 +101,11 @@ export default class AgendaScreen extends Component<State> {
         <Text>This is empty date!</Text>
       </View>
     );
-  }
+  };
 
   rowHasChanged = (r1: AgendaEntry, r2: AgendaEntry) => {
     return r1.name !== r2.name;
-  }
+  };
 
   timeToString(time: number) {
     const date = new Date(time);
